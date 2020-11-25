@@ -5,6 +5,10 @@ import 'package:bmi_calculator/ContainerFile.dart';
 
 const activeColor = Color(0xFF1D1E33);
 const deActiveColor = Color(0xFF111328);
+enum Gender {
+  male,
+  female,
+}
 
 class InputPage extends StatefulWidget {
   @override
@@ -14,12 +18,12 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Color maleColor = deActiveColor;
   Color femaleColor = deActiveColor;
-  void updateColor(int gender) {
-    if (gender == 1) {
+  void updateColor(Gender gendertype) {
+    if (gendertype == Gender.male) {
       maleColor = activeColor;
       femaleColor = deActiveColor;
     }
-    if (gender == 2) {
+    if (gendertype == Gender.female) {
       femaleColor = activeColor;
       maleColor = deActiveColor;
     }
@@ -40,7 +44,7 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    updateColor(1);
+                    updateColor(Gender.male);
                   });
                 },
                 child: RepeatContainerCode(
@@ -55,7 +59,7 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    updateColor(2);
+                    updateColor(Gender.female);
                   });
                 },
                 child: RepeatContainerCode(
