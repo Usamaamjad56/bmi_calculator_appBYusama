@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/IconTextFile.dart';
 import 'package:bmi_calculator/ContainerFile.dart';
 import 'ConstantFile.dart';
+import 'package:bmi_calculator/ResultFile.dart';
 
 enum Gender {
   male,
@@ -198,11 +199,23 @@ class _InputPageState extends State<InputPage> {
               )),
             ],
           )),
-          Container(
-            color: Color(0xFFEB1555),
-            margin: EdgeInsets.only(top: 10.0),
-            width: double.infinity,
-            height: 80.0,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ResultScreen()));
+            },
+            child: Container(
+              child: Center(
+                child: Text(
+                  'Calculate',
+                  style: kLargeButtonStyle,
+                ),
+              ),
+              color: Color(0xFFEB1555),
+              margin: EdgeInsets.only(top: 10.0),
+              width: double.infinity,
+              height: 80.0,
+            ),
           ),
         ],
       ),
