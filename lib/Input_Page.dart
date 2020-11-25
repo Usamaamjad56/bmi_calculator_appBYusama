@@ -21,6 +21,7 @@ class _InputPageState extends State<InputPage> {
   Gender selectGender;
   int sliderHeight = 180;
   int sliderWeight = 60;
+  int sliderAge = 60;
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +121,7 @@ class _InputPageState extends State<InputPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'HEIGHT',
+                      'WEIGHT',
                       style: kLableStyle,
                     ),
                     Text(
@@ -129,7 +130,27 @@ class _InputPageState extends State<InputPage> {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [],
+                      children: [
+                        RoundIcon(
+                          iconData: FontAwesomeIcons.minus,
+                          onPress: () {
+                            setState(() {
+                              sliderWeight--;
+                            });
+                          },
+                        ),
+                        SizedBox(
+                          width: 10.0,
+                        ),
+                        RoundIcon(
+                          iconData: FontAwesomeIcons.plus,
+                          onPress: () {
+                            setState(() {
+                              sliderWeight++;
+                            });
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -137,11 +158,74 @@ class _InputPageState extends State<InputPage> {
               Expanded(
                   child: RepeatContainerCode(
                 colors: Color(0xFF1D1E33),
-              ))
+                cardWidget: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'AGE',
+                      style: kLableStyle,
+                    ),
+                    Text(
+                      sliderAge.toString(),
+                      style: kNumberStyle,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RoundIcon(
+                          iconData: FontAwesomeIcons.minus,
+                          onPress: () {
+                            setState(() {
+                              sliderAge--;
+                            });
+                          },
+                        ),
+                        SizedBox(
+                          width: 10.0,
+                        ),
+                        RoundIcon(
+                          iconData: FontAwesomeIcons.plus,
+                          onPress: () {
+                            setState(() {
+                              sliderAge++;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )),
             ],
           )),
+          Container(
+            color: Color(0xFFEB1555),
+            margin: EdgeInsets.only(top: 10.0),
+            width: double.infinity,
+            height: 80.0,
+          ),
         ],
       ),
+    );
+  }
+}
+
+class RoundIcon extends StatelessWidget {
+  RoundIcon({@required this.iconData, @required this.onPress});
+  final IconData iconData;
+  final Function onPress;
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child: Icon(iconData),
+      onPressed: onPress,
+      elevation: 6.0,
+      constraints: BoxConstraints.tightFor(
+        height: 56.0,
+        width: 56.0,
+      ),
+      shape: CircleBorder(),
+      fillColor: Color(0xFF4C4F5E),
     );
   }
 }
