@@ -16,18 +16,7 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleColor = deActiveColor;
-  Color femaleColor = deActiveColor;
-  void updateColor(Gender gendertype) {
-    if (gendertype == Gender.male) {
-      maleColor = activeColor;
-      femaleColor = deActiveColor;
-    }
-    if (gendertype == Gender.female) {
-      femaleColor = activeColor;
-      maleColor = deActiveColor;
-    }
-  }
+  Gender selectGender;
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +33,12 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    updateColor(Gender.male);
+                    selectGender = Gender.male;
                   });
                 },
                 child: RepeatContainerCode(
-                  colors: maleColor,
+                  colors:
+                      selectGender == Gender.male ? activeColor : deActiveColor,
                   cardWidget: RepeatTextAndIconWidget(
                     iconData: FontAwesomeIcons.male,
                     label: 'Male',
@@ -59,11 +49,13 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    updateColor(Gender.female);
+                    selectGender = Gender.female;
                   });
                 },
                 child: RepeatContainerCode(
-                  colors: femaleColor,
+                  colors: selectGender == Gender.female
+                      ? activeColor
+                      : deActiveColor,
                   cardWidget: RepeatTextAndIconWidget(
                     iconData: FontAwesomeIcons.female,
                     label: 'Female',
